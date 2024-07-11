@@ -3,3 +3,8 @@
     width: 58%;
   }
 }
+@media screen and (min-width: 1440px) {
+  .custom-class {
+    width: 64%;
+  }
+}

@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-select-plan',
+  selector: 'select-plan',
   templateUrl: './select-plan.component.html',
-  styleUrl: './select-plan.component.css'
+  styleUrl: './select-plan.component.css',
 })
-export class SelectPlanComponent {
-
-}
+export class SelectPlanComponent {}

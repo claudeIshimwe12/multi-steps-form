@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-finishing-up',
+  selector: 'finishing-up',
   templateUrl: './finishing-up.component.html',
-  styleUrl: './finishing-up.component.css'
+  styleUrl: './finishing-up.component.css',
 })
-export class FinishingUpComponent {
-
-}
+export class FinishingUpComponent {}

@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   currentStep: number = 1;
+
+  onNextStep() {
+    this.currentStep++;
+  }
+  onPreviousStep() {
+    this.currentStep--;
+  }
 }
