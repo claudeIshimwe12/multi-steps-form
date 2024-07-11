@@ -1,11 +1,71 @@
-<div class="">
-  <div class="left-wing">
-    <app-steps></app-steps>
-  </div>
-  <div>
-    <h1 class="bg-Marine-blue">form</h1>
-  </div>
-  <div>
-    <app-nav-buttons></app-nav-buttons>
+<div class="bg-sky-blue flex justify-center items-center lg:min-h-screen">
+  <div
+    class="bg-sky-blue lg:bg-white flex justify-between flex-col lg:flex-row w-full lg:w-[62.5%] lg:p-4 lg:min-h-[74.02%] rounded-lg relative"
+  >
+    <div
+      class="custom-class bg-[url('./assets/images/bg-sidebar-mobile.svg')] lg:bg-[url('./assets/images/bg-sidebar-desktop.svg')] lg:w-[29.15%] bg-no-repeat lg:min-h-[580px] flex gap-2 lg:flex-col justify-center bg-cover lg:bg-contain min-h-44 py-8"
+    >
+      <div class="lg:flex gap-2 items-center">
+        <div
+          class="rounded-full w-8 h-8 p-4 border border-Light-blue bg-Light-blue flex justify-center items-center"
+        >
+          <p class="text-black">1</p>
+        </div>
+        <div class="hidden lg:block">
+          <h1>Step 1</h1>
+          <h1>Your info</h1>
+        </div>
+      </div>
+
+      <div class="lg:flex gap-2 items-center">
+        <div
+          class="rounded-full w-8 h-8 p-4 border border-white bg-transparent flex justify-center items-center"
+        >
+          <p class="text-white">2</p>
+        </div>
+        <div class="hidden lg:block">
+          <h1>Step 2</h1>
+          <h1>Your info</h1>
+        </div>
+      </div>
+
+      <div class="md:flex gap-2 items-center">
+        <div
+          class="rounded-full w-8 h-8 p-4 border border-white bg-transparent flex justify-center items-center"
+        >
+          <p class="text-white">3</p>
+        </div>
+        <div class="hidden lg:block">
+          <h1>Step 3</h1>
+          <h1>Your info</h1>
+        </div>
+      </div>
+
+      <div class="md:flex gap-2 items-center">
+        <div
+          class="rounded-full w-8 h-8 p-4 border border-white bg-transparent flex justify-center items-center"
+        >
+          <p class="text-white">4</p>
+        </div>
+        <div class="hidden lg:block">
+          <h1>Step 4</h1>
+          <h1>Your info</h1>
+        </div>
+      </div>
+    </div>
+    <div class="absolute w-11/12 top-32 left-4 lg:relative lg:top-0">
+      <personal-info *ngIf="currentStep == 1"></personal-info>
+      <div
+        class="lg:flex w-full items-center flex justify-between lg:mt-24 bg-transparent mt-12 lg:px-8"
+      >
+        <button>Go Back</button>
+        <button
+          class="py-2 px-4 rounded-md text-white bg-Denim hover:cursor-pointer hover:bg-Puplish"
+        >
+          Next Step
+        </button>
+      </div>
+    </div>
   </div>
 </div>
+<div class="h-[540px] lg:hidden bg-[#EFF5FF]"></div>
