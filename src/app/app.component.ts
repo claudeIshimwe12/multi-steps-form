@@ -14,4 +14,8 @@ export class AppComponent {
   onPreviousStep() {
     this.currentStep--;
   }
+  onSubmit() {
+    if (this.currentStep > 5) return;
+    this.currentStep++;
+  }
 }

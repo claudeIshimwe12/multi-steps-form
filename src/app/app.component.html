@@ -103,8 +103,8 @@
             'h-8': true,
             'p-4': true,
             border: true,
-            'border-Light-blue': currentStep == 4,
-            'bg-Light-blue': currentStep == 4,
+            'border-Light-blue': currentStep == 4 || currentStep == 5,
+            'bg-Light-blue': currentStep == 4 || currentStep == 5,
             flex: true,
             'justify-center': true,
             'items-center': true
@@ -112,7 +112,7 @@
         >
           <p
             [ngClass]="{
-              'text-black': currentStep == 4,
+              'text-black': currentStep == 4 || currentStep == 5,
               'text-white': currentStep !== 4
             }"
           >
@@ -130,11 +130,15 @@
       <select-plan *ngIf="currentStep == 2"></select-plan>
       <choose-ad-ons *ngIf="currentStep == 3"></choose-ad-ons>
       <finishing-up *ngIf="currentStep == 4"></finishing-up>
+      <final *ngIf="currentStep == 5"></final>
       <div
         ngClass="lg:flex w-full items-center flex justify-between lg:mt-24 bg-transparent mt-12 lg:px-8"
       >
         <div>
-          <button *ngIf="currentStep > 1" (click)="onPreviousStep()">
+          <button
+            *ngIf="currentStep > 1 && currentStep < 5"
+            (click)="onPreviousStep()"
+          >
             Go Back
           </button>
         </div>
@@ -145,6 +149,15 @@
             (click)="onNextStep()"
           >
             Next Step
+          </button>
+        </div>
+        <div *ngIf="currentStep == 4">
+          <button
+            *ngIf="currentStep == 4"
+            class="py-2 px-4 rounded-md text-white bg-Puplish hover:cursor-pointer hover:bg-Denim"
+            (click)="onSubmit()"
+          >
+            Submit
           </button>
         </div>
       </div>
