@@ -15,6 +15,7 @@ module.exports = {
         Alabaster: "hsl(231, 100%, 99%)",
         white: "hsl(0, 0%, 100%)",
         "border-color": "#D6D9E6",
+        "very-light-gray": "#F8F9FF",
       },
     },
   },
