@@ -11,7 +11,8 @@ import { SelectPlanComponent } from './components/select-plan/select-plan.compon
 import { ChooseAdOnsComponent } from './components/choose-ad-ons/choose-ad-ons.component';
 import { FinishingUpComponent } from './components/finishing-up/finishing-up.component';
 import { FinalComponent } from './components/final/final.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,13 @@ import { FinalComponent } from './components/final/final.component';
     FinishingUpComponent,
     FinalComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })

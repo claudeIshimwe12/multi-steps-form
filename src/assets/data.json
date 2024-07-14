@@ -1,0 +1,34 @@
+{
+  "plans": [
+    {
+      "plan": "Arcade",
+      "icon": "./assets/images/icon-arcade.svg",
+      "pricePerMonth": 9,
+      "addOns": {
+        "onlineService": 1,
+        "largelStorage": 2,
+        "customizableProfile": 2
+      }
+    },
+    {
+      "plan": "Advanced",
+      "icon": "./assets/images/icon-advanced.svg",
+      "pricePerMonth": 12,
+      "addOns": {
+        "onlineService": 2,
+        "largelStorage": 4,
+        "customizableProfile": 4
+      }
+    },
+    {
+      "plan": "Pro",
+      "icon": "./assets/images/icon-pro.svg",
+      "pricePerMonth": 15,
+      "addOns": {
+        "onlineService": 3,
+        "largelStorage": 5,
+        "customizableProfile": 5
+      }
+    }
+  ]
+}

@@ -5,42 +5,55 @@
       You have the option of monthly or yearly billing.
     </h6>
 
-    <div class="flex justify-between my-8">
-      <div class="p-4 border-2 border-gray-50 rounded-lg">
-        <img
-          src="./assets/images/icon-arcade.svg"
-          alt="arcade icon"
-          class="mb-8"
-        />
-        <h1 class="text-Denim text-lg my-2">Arcade</h1>
-        <p class="text-Cool-gray text-sm">$9/mo</p>
-      </div>
-      <div class="p-4 border-2 border-gray-50">
-        <img
-          src="./assets/images/icon-advanced.svg"
-          alt="arcade icon"
-          class="mb-8"
-        />
-        <h1 class="text-Denim text-lg my-2">Arcade</h1>
-        <p class="text-Cool-gray text-sm">$9/mo</p>
-      </div>
-      <div class="p-4 border-2 border-gray-50">
-        <img
-          src="./assets/images/icon-pro.svg"
-          alt="arcade icon"
-          class="mb-8"
-        />
-        <h1 class="text-Denim text-lg my-2">Arcade</h1>
-        <p class="text-Cool-gray text-sm">$9/mo</p>
+    <div class="flex justify-evenly mx-0 my-8">
+      <div
+        class="p-4 border-2 border-gray-50 rounded-lg"
+        *ngFor="let plan of data.plans"
+      >
+        <img [src]="plan.icon" alt="arcade icon" class="mb-8" />
+        <h1 class="text-Denim text-lg my-2">{{ plan.plan }}</h1>
+        <p class="text-Cool-gray text-sm">
+          ${{
+            planTime == "yearly" ? plan.pricePerMonth * 10 : plan.pricePerMonth
+          }}/mo
+        </p>
+        <p *ngIf="planTime == 'yearly'" class="text-sm text-Denim mt-2">
+          2 months free
+        </p>
       </div>
     </div>
     <div
       class="flex justify-center gap-4 w-full py-2 px-4 bg-[#F8F9FF] rounded-lg"
     >
       <p>Monthly</p>
-      <!-- <img src="./assets/images/icon-toggle.svg" alt="toggle" /> -->
-      <img src="./assets/images/icon-toggle-yearly.svg" alt="toggle" />
+      <img
+        *ngIf="planTime == 'monthly'"
+        src="./assets/images/icon-toggle.svg"
+        alt="toggle"
+        (click)="onToggleMo()"
+      />
+      <img
+        *ngIf="planTime == 'yearly'"
+        src="./assets/images/icon-toggle-yearly.svg"
+        alt="toggle"
+        (click)="onToggleY()"
+      />
       <p>Yearly</p>
     </div>
+    <input type="text" name="name" id="name" #input />
   </form>
+</div>
+<div
+  ngClass=" lg:flex w-full items-center flex justify-between lg:mt-24 bg-transparent mt-12 lg:px-8"
+>
+  <div>
+    <button (click)="prev()">Go Back</button>
+  </div>
+  <div>
+    <button
+      class="py-2 px-4 rounded-md text-white bg-Denim hover:cursor-pointer hover:bg-Puplish"
+    >
+      Next Step
+    </button>
+  </div>
 </div>

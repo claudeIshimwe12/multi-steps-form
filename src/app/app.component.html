@@ -126,12 +126,20 @@
       </div>
     </div>
     <div class="absolute w-11/12 top-28 left-4 lg:relative lg:top-0">
-      <personal-info *ngIf="currentStep == 1"></personal-info>
-      <select-plan *ngIf="currentStep == 2"></select-plan>
+      <personal-info
+        (next)="onNextStep($event)"
+        [currentStep]="currentStep"
+        *ngIf="currentStep == 1"
+      ></personal-info>
+      <select-plan
+        (Onprev)="onPreviousStep()"
+        *ngIf="currentStep == 2"
+      ></select-plan>
       <choose-ad-ons *ngIf="currentStep == 3"></choose-ad-ons>
       <finishing-up *ngIf="currentStep == 4"></finishing-up>
+
       <final *ngIf="currentStep == 5"></final>
-      <div
+      <!-- <div
         ngClass="lg:flex w-full items-center flex justify-between lg:mt-24 bg-transparent mt-12 lg:px-8"
       >
         <div>
@@ -146,7 +154,7 @@
           <button
             *ngIf="currentStep < 4"
             class="py-2 px-4 rounded-md text-white bg-Denim hover:cursor-pointer hover:bg-Puplish"
-            (click)="onNextStep()"
+            (click)="onNextStep(currentStep, info.value)"
           >
             Next Step
           </button>
@@ -160,7 +168,7 @@
             Submit
           </button>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
