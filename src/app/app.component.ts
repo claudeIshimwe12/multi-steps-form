@@ -19,6 +19,8 @@ export class AppComponent implements OnInit {
     email: '',
     phone: 1234456789,
   };
+  selectedPlan: string = '';
+  planTime: string = '';
   constructor(private dataService: DataServiceService) {}
 
   ngOnInit(): void {}
@@ -31,9 +33,14 @@ export class AppComponent implements OnInit {
     this.currentStep--;
   }
   onSubmit() {
-    if (this.currentStep > 5) return;
     this.currentStep++;
   }
-
-  submitPersonalInfo() {}
+  nextToAddOns(sel: { time: string; plan: string; price: number }) {
+    this.selectedPlan = sel.plan;
+    this.planTime = sel.time;
+    this.currentStep++;
+  }
+  nextToFinishingUp() {
+    this.currentStep++;
+  }
 }

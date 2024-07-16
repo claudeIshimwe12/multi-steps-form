@@ -4,6 +4,9 @@ import {
   EventEmitter,
   Input,
   OnInit,
+  ChangeDetectorRef,
+  OnChanges,
+  SimpleChanges,
   AfterViewInit,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -15,7 +18,7 @@ import { PersonalInfo } from '../../models/personalInfo';
   templateUrl: './personal-info.component.html',
   styleUrl: './personal-info.component.css',
 })
-export class PersonalInfoComponent implements OnInit, AfterViewInit {
+export class PersonalInfoComponent implements OnInit {
   @Output() next: EventEmitter<any> = new EventEmitter();
   @Output() prev: EventEmitter<any> = new EventEmitter();
   @Input() currentStep: number = 1;
@@ -25,11 +28,20 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit {
     phone: undefined,
   };
 
-  constructor(private dataService: DataServiceService) {}
+  constructor(
+    private dataService: DataServiceService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.currentInfo = this.dataService.getPersonalInfo();
+    this.form.setValue({
+      name: this.currentInfo.name,
+      email: this.currentInfo.email,
+      phone: this.currentInfo.phone,
+    });
   }
+
   name = new FormControl(this.currentInfo.name, {
     validators: [Validators.required],
   });
@@ -47,24 +59,16 @@ export class PersonalInfoComponent implements OnInit, AfterViewInit {
     email: this.email,
     phone: this.phone,
   });
-  ngAfterViewInit(): void {
-    this.form.setValue({
-      name: this.currentInfo.name,
-      email: this.currentInfo.email,
-      phone: this.currentInfo.phone,
-    });
-  }
+
   OnNextStep() {
     if (this.form.valid) {
       this.next.emit(this.form.value);
     } else {
       this.validateForm();
     }
-    console.log(this.form.value);
   }
   onPreviousStep() {
     this.name.updateValueAndValidity({ onlySelf: true });
-    console.log(this.name.value, this.email.value);
     this.prev.emit();
   }
   validateForm() {

@@ -10,6 +10,7 @@ import { Plans } from '../../models/plans';
 })
 export class SelectPlanComponent implements OnInit {
   @Output() Onprev: EventEmitter<any> = new EventEmitter();
+  @Output() onNext: EventEmitter<any> = new EventEmitter();
   data: Plans = {
     plans: [
       {
@@ -25,11 +26,16 @@ export class SelectPlanComponent implements OnInit {
     ],
   };
   planTime: string = 'monthly';
+  selectedPlan: string = '';
+  price: number = 0;
   constructor(private dataService: DataServiceService) {}
   ngOnInit(): void {
     this.dataService.getData().subscribe((res) => {
       this.data = res;
     });
+    const previousData = this.dataService.getSelectedPlan();
+    this.planTime = previousData.time;
+    this.selectedPlan = previousData.plan;
   }
 
   prev() {
@@ -41,5 +47,23 @@ export class SelectPlanComponent implements OnInit {
   }
   onToggleY() {
     this.planTime == 'yearly' ? (this.planTime = 'monthly') : 'yearly';
+  }
+
+  onSelectPlan(plan: string, price: number) {
+    this.selectedPlan = plan;
+    this.price = price;
+  }
+  next() {
+    this.dataService.setSelectedPlan(
+      this.selectedPlan,
+      this.planTime,
+      this.price
+    );
+
+    this.onNext.emit({
+      time: this.planTime,
+      plan: this.selectedPlan,
+      price: this.price,
+    });
   }
 }

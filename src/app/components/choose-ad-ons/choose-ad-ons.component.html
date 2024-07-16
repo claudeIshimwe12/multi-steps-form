@@ -1,19 +1,26 @@
 <div class="bg-white p-8 rounded-lg">
-  <form>
+  <form [formGroup]="form">
     <h1 class="text-2xl text-Denim font-500">Pick add-ons</h1>
     <h6 class="text-Light-gray text-lg font-400">
       Add-ons help enhance your gaming experience.
     </h6>
     <div class="flex flex-col gap-4 mt-8">
       <div
-        class="flex justify-between items-center border-2 border-border-color rounded-lg py-4 px-8"
+        class="flex justify-between items-center border-2 border-border-color rounded-lg py-4 px-2 lg:px-8"
+        [ngClass]="{
+          'border-border-color': !onlineService.value,
+          'border-Puplish': onlineService.value,
+          'bg-very-light-gray': onlineService.value,
+          'outline-none': true
+        }"
       >
         <div>
           <input
+            [formControl]="onlineService"
             type="checkbox"
             name="os"
             id="os"
-            class="h-6 w-6 border-2 border-border-color rounded-lg"
+            class="h-6 w-6 border-2 border-border-color rounded-lg mr-2"
           />
         </div>
         <div>
@@ -21,18 +28,29 @@
           <h2 class="text-Light-gray text-sm">Access to multiplayer games</h2>
         </div>
         <div>
-          <h1 class="text-Puplish text-lg">$1/mo</h1>
+          <h1 class="text-Puplish text-lg">
+            +${{ selectedPlan?.addOns?.onlineService
+            }}{{ planInfo.time == "yearly" ? "0/yr" : "/mo" }}
+          </h1>
         </div>
       </div>
       <div
-        class="flex justify-between items-center border-2 border-border-color rounded-lg py-4 px-8"
+        class="flex justify-between items-center border-2 rounded-lg py-4 px-2 lg:px-8"
+        [ngClass]="{
+          'border-border-color': !largelStorage.value,
+          'border-Puplish': largelStorage.value,
+          'bg-very-light-gray': largelStorage.value,
+          'outline-none': true
+        }"
+        (click)="onChooseAddOn($event)"
       >
         <div>
           <input
+            [formControl]="largelStorage"
             type="checkbox"
             name="os"
             id="os"
-            class="h-6 w-6 border-2 border-border-color rounded-lg"
+            class="h-6 w-6 border-2 border-border-color rounded-lg mr-2"
           />
         </div>
         <div>
@@ -40,18 +58,28 @@
           <h2 class="text-Light-gray text-sm">Extra 1TB of cloud save</h2>
         </div>
         <div>
-          <h1 class="text-Puplish text-lg">+$2/mo</h1>
+          <h1 class="text-Puplish text-lg">
+            +${{ selectedPlan?.addOns?.largelStorage
+            }}{{ planInfo.time == "yearly" ? "0/yr" : "/mo" }}
+          </h1>
         </div>
       </div>
       <div
-        class="flex justify-between items-center border-2 border-border-color rounded-lg py-4 px-8"
+        class="flex justify-between items-center border-2 rounded-lg py-4 px-2 lg:px-8"
+        [ngClass]="{
+          'border-border-color': !customizableProfile.value,
+          'border-Puplish': customizableProfile.value,
+          'bg-very-light-gray': customizableProfile.value,
+          'outline-none': true
+        }"
       >
         <div>
           <input
+            [formControl]="customizableProfile"
             type="checkbox"
             name="os"
             id="os"
-            class="h-6 w-6 border-2 border-border-color rounded-lg"
+            class="h-6 w-6 border-2 border-border-color mr-2 rounded-lg"
           />
         </div>
         <div>
@@ -59,9 +87,27 @@
           <h2 class="text-Light-gray text-sm">Custom theme on your profile</h2>
         </div>
         <div>
-          <h1 class="text-Puplish text-lg">+$2/mo</h1>
+          <h1 class="text-Puplish text-lg">
+            +${{ selectedPlan?.addOns?.customizableProfile
+            }}{{ planInfo.time == "yearly" ? "0/yr" : "/mo" }}
+          </h1>
         </div>
       </div>
     </div>
   </form>
+</div>
+<div
+  Class=" lg:flex w-full items-center flex justify-between lg:mt-24 bg-transparent mt-12 lg:px-8"
+>
+  <div>
+    <button (click)="prev()">Go Back</button>
+  </div>
+  <div>
+    <button
+      class="py-2 px-4 rounded-md text-white bg-Denim hover:cursor-pointer hover:bg-Puplish"
+      (click)="next()"
+    >
+      Next Step
+    </button>
+  </div>
 </div>

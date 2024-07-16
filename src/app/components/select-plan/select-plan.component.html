@@ -5,21 +5,45 @@
       You have the option of monthly or yearly billing.
     </h6>
 
-    <div class="flex justify-evenly mx-0 my-8">
-      <div
-        class="p-4 border-2 border-gray-50 rounded-lg"
-        *ngFor="let plan of data.plans"
-      >
-        <img [src]="plan.icon" alt="arcade icon" class="mb-8" />
-        <h1 class="text-Denim text-lg my-2">{{ plan.plan }}</h1>
-        <p class="text-Cool-gray text-sm">
-          ${{
-            planTime == "yearly" ? plan.pricePerMonth * 10 : plan.pricePerMonth
-          }}/mo
-        </p>
-        <p *ngIf="planTime == 'yearly'" class="text-sm text-Denim mt-2">
-          2 months free
-        </p>
+    <div
+      class="flex flex-col gap-4 lg:gap-0 lg:flex-row justify-between mx-0 my-2 lg:my-8"
+    >
+      <div *ngFor="let plan of data.plans">
+        <div
+          (click)="onSelectPlan(plan.plan, plan.pricePerMonth)"
+          [ngClass]="{
+            'border-2': true,
+            'border-gray-50': true && selectedPlan !== plan.plan,
+            'p-4': true,
+            'rounded-lg': true,
+            'outline-none': true,
+            'border-Puplish': selectedPlan == plan.plan,
+            'bg-very-light-gray': selectedPlan == plan.plan,
+            'lg:min-w-[127px]': true,
+            flex: true,
+            'justify-start': true,
+            'gap-8': true,
+            'lg:block': true
+          }"
+        >
+          <img [src]="plan.icon" alt="arcade icon" class="mb-8" />
+          <div>
+            <h1 class="text-Denim text-lg my-2">{{ plan.plan }}</h1>
+            <p class="text-Cool-gray text-sm">
+              ${{
+                planTime == "yearly"
+                  ? plan.pricePerMonth * 10 + " /yr"
+                  : plan.pricePerMonth + "/mo"
+              }}
+            </p>
+            <p
+              *ngIf="planTime == 'yearly'"
+              class="text-sm text-Denim mt-1 lg:mt-2"
+            >
+              2 months free
+            </p>
+          </div>
+        </div>
       </div>
     </div>
     <div
@@ -44,7 +68,7 @@
   </form>
 </div>
 <div
-  ngClass=" lg:flex w-full items-center flex justify-between lg:mt-24 bg-transparent mt-12 lg:px-8"
+  ngClass="bg-white p-4 absolute -bottom-40 lg:flex w-full items-center flex justify-between lg:mt-24 bg-transparent mt-12 lg:px-8"
 >
   <div>
     <button (click)="prev()">Go Back</button>
@@ -52,6 +76,8 @@
   <div>
     <button
       class="py-2 px-4 rounded-md text-white bg-Denim hover:cursor-pointer hover:bg-Puplish"
+      (click)="next()"
+      [disabled]="!selectedPlan"
     >
       Next Step
     </button>
