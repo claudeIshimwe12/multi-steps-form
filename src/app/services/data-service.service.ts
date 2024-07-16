@@ -51,7 +51,6 @@ export class DataServiceService {
     this.planPrice = price;
   }
   getSelectedPlan() {
-    console.log('get', this.planPrice);
     return {
       plan: this.selectedPlan,
       time: this.planTime,
