@@ -35,11 +35,12 @@ export class PersonalInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentInfo = this.dataService.getPersonalInfo();
-    this.form.setValue({
-      name: this.currentInfo.name,
-      email: this.currentInfo.email,
-      phone: this.currentInfo.phone,
-    });
+
+    this.name.setValue(this.currentInfo.name);
+    this.email.setValue(this.currentInfo.email);
+    if (this.currentInfo.phone) {
+      this.phone.setValue(this.currentInfo.phone);
+    }
   }
 
   name = new FormControl(this.currentInfo.name, {
